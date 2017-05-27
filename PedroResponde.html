@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body>
+
+<div class="header">
+
+    <h1>Pedro responses</h1>
+
+</div>
+<div id="app">
+
+    <div class="form-initial">
+
+        <div :class="mantraForm">
+            <label class="text" for="question">Realiza la oración:</label>
+            <i :title="mantra" class="material-icons" style="font-size:15px; margin-top: 7px">help</i>
+            <input class="question-input" id="mantra" v-model="input" @input="transformInput($event)">
+            <br>
+        </div>
+
+        <div :class="questionForm">
+            <label class="text" for="question">Ya que me adoras puedes preguntar:</label>
+            <input class="question-input" id="question" v-model="question">
+
+        </div>
+
+        <div class="response-container" :class="response">
+            <div class="response-header"> Pedro responde: </div>
+            {{answer}}
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    var mantraIndex = 0
+    var reverseCount = 0
+    var isInReverse = false
+    var isCheater = false
+
+    mantra ='Pedro te la chupo, responde mi pregunta'
+
+    var vm = new Vue({
+
+        el: '#app',
+        data: {
+            input: '',
+            answer: '',
+            question: '',
+            mantra: mantra,
+
+            questionForm: {'hidden-element': true},
+            mantraForm: {'hidden-element': false},
+            response: {'hidden-element': true}
+
+        },
+
+        watch: {
+
+            question: function () {
+
+                if (this.question.endsWith('?')) {
+
+                    this.questionForm['hidden-element'] = true
+                    this.mantraForm['hidden-element'] = false
+
+                    if (!isCheater) {
+
+                        this.answer  = 'No puedo responder ahora'
+
+                    }
+
+                    this.response['hidden-element'] = false
+                    this.input = ''
+                    this.question = ''
+
+                }
+            }
+        },
+
+        methods: {
+
+            transformInput: function (event) {
+
+                this.response['hidden-element'] = true
+                if (this.input.startsWith(".")) {
+
+                    isCheater = true;
+                    this.input = mantra.charAt(mantraIndex)
+                    mantraIndex++
+
+                    return
+
+                }
+
+                if (this.input.endsWith(':')) {
+                    this.response['hidden-element'] = true
+
+                    if(!isCheater){
+
+                        if(this.input !== mantra+':'){
+                            this.answer = 'Introduce bien mi oración >:v'
+                            this.response['hidden-element'] = false
+                            return
+                        }
+
+                    }
+
+                    this.input = mantra + ':'
+                    this.questionForm['hidden-element'] = false
+                    this.mantraForm['hidden-element'] = true
+
+                    document.getElementById('question').focus()
+
+                    return
+
+                }
+
+                /* if(mantraIndex > mantra.length-1) isInReverse = true
+
+                if(reverseCount < 8 && isInReverse){
+
+                    this.input = this.input.slice(0, -1)
+
+                    mantraIndex--
+                    reverseCount++
+                    return
+
+                }*/
+
+                if(mantraIndex > 0){
+
+                    this.storeSecretInput()
+                    this.input = this.input.slice(0, -1)
+                    this.input = this.input.concat(mantra.charAt(mantraIndex))
+
+                    mantraIndex++
+
+                }
+
+            },
+
+            storeSecretInput: function() {
+
+                    this.answer = this.answer.concat(this.input.slice(-1))
+
+            }
+
+        },
+
+    });
+</script>
+
+</body>
+</html>

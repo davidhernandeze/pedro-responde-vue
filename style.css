@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'Indie Flower', cursive;
+}
+
+body{
+    margin: 0 0 0 0;
+
+}
+.header{
+    color: whitesmoke;
+    background-color: #41b883;
+    height: 60px;
+    width: 100%;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.header h1{
+    margin: 0 0 0 0;
+    padding-top: 10px;
+    font-family: 'Indie Flower', cursive;
+
+    border-bottom: whitesmoke;
+}
+
+#app{
+    background-color: #919191;
+    margin: 50px 100px 0 100px;
+    height: 100px;
+    padding-top: 10px;
+}
+
+.form-initial{
+    padding: 20px 20px 20px 20px;
+}
+
+.form-expanded{
+    padding: 20px 20px 20px 20px;
+}
+
+.form-initial .text{
+    font-family: 'Indie Flower', cursive;
+    color: whitesmoke;
+}
+.question-input{
+    width: 100%;
+    border-width: 2px;
+    border-color: #fa000b;
+    margin-bottom: 25px;
+
+}
+
+.hidden-element {
+    display: none;
+}
+
+.response-container{
+    color: #851a18;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Rock Salt', cursive;
+    font-size: 50px;
+}
+
+.response-header{
+    color: #851a18;
+    text-align: left;
+    margin-top: 20px;
+    font-family: 'Rock Salt', cursive;
+    font-size: 20px;
+}
+
