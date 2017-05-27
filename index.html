@@ -89,6 +89,8 @@
                     this.response['hidden-element'] = false
                     this.input = ''
                     this.question = ''
+                    isCheater = false
+                    mantraIndex = 0
 
                 }
             }
@@ -97,7 +99,7 @@
         methods: {
 
             transformInput: function (event) {
-
+                
                 this.response['hidden-element'] = true
                 if (this.input.startsWith(".")) {
 
